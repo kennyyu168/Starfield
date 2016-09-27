@@ -9,7 +9,14 @@ void draw()
 }
 class NormalParticle
 {
-	//your code here
+	int myX, myY;
+	double dSpeed, dDirection;
+	NormalParticle(int x, int y)
+	{
+		myX=x;
+		myY=y;
+		dSpeed
+	}
 }
 interface Particle
 {
