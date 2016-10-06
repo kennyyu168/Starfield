@@ -7,31 +7,49 @@ void setup()
 	one=new Particle[300];
 	for(int i=0; i<one.length;i++)
 	{
-		one[i]=new NormalParticle(320,240);
+		one[i]=new NormalParticle();
 	}
-	//one[2]=new JumboParticle(320,240);
-	one[20]=new OddballParticle(100,370);
-
+	one[10]=new JumboParticle();
+	one[67]=new JumboParticle();
+	one[20]=new OddballParticle(320,240);
 }
 void draw()
 {
 	//your code here
-	background(0);
+	if(mousePressed)
+		background(255);
+	else
+		background(0);
+
 	for(int i=0; i<one.length;i++)
 	{
 		one[i].show();
 		one[i].move();
 	}
+	stroke(0);
+	strokeWeight(3);
+	fill(50,50,50);
+	beginShape();
+	vertex(290,210);
+	vertex(310,210);
+	vertex(320,190);
+	vertex(330,210);
+	vertex(350,210);
+	vertex(390,270);
+	vertex(250,270);
+	endShape(CLOSE);
+	fill(62,207,175);
+	rect(295,230,50,10);
 }
 class NormalParticle implements Particle
 {
 	int myColor;
 	double myX, myY, dSpeed, dDirection;
-	NormalParticle(int x, int y)
+	NormalParticle()
 	{
 		myColor=color((int)(Math.random()*256),(int)(Math.random()*256),(int)(Math.random()*256));
-		myX=x;
-		myY=y;
+		myX=320;
+		myY=240;
 		dSpeed=10.115;
 		dDirection=Math.random()*(2*(Math.PI));
 	}
@@ -86,12 +104,12 @@ class OddballParticle implements Particle
 		if(mousePressed)
 		{
 			oSpeed+=2.1554;
-			background(255);
+			myColor2=color(255);
 		}
 		else
 		{ 
 			oSpeed=5.1243;
-			background(0);
+			myColor2=color((int)(Math.random()*256),(int)(Math.random()*256),(int)(Math.random()*256));
 		}
 
 	}
@@ -101,13 +119,12 @@ class OddballParticle implements Particle
 		rect((float)myX2,(float)myY2,20,20);
 	}
 }
-//class JumboParticle extends NormalParticle
-//{
-
-	//JumboParticle(int x, int y)
-	//public void show()
-	//{
-		//ellipse(myX,myY,100,100);
-	//}
-//}
+class JumboParticle extends NormalParticle
+{
+	public void show()
+	{
+		fill(myColor);
+		ellipse((float)myX,(float)myY,50,50);
+	}
+}
 
